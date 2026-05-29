@@ -9,7 +9,8 @@
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "deploy": "npm run build && git add . && git commit -m \"Deploy build\" && git push origin main"
   },
   "dependencies": {
     "@genkit-ai/google-genai": "^1.28.0",
