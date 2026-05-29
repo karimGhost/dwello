@@ -1,0 +1,46 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-living",
+      "description": "Modern living room with terracotta accents",
+      "imageUrl": "https://picsum.photos/seed/dwello1/1200/600",
+      "imageHint": "modern living"
+    },
+    {
+      "id": "prod-sofa-1",
+      "description": "Nordic Minimalist Sofa",
+      "imageUrl": "https://picsum.photos/seed/dwello2/600/400",
+      "imageHint": "nordic sofa"
+    },
+    {
+      "id": "prod-fridge-1",
+      "description": "Smart Energy Efficient Fridge",
+      "imageUrl": "https://picsum.photos/seed/dwello3/600/400",
+      "imageHint": "smart refrigerator"
+    },
+    {
+      "id": "prod-chair-1",
+      "description": "Velvet Armchair",
+      "imageUrl": "https://picsum.photos/seed/dwello4/600/400",
+      "imageHint": "velvet armchair"
+    },
+    {
+      "id": "prod-table-1",
+      "description": "Oak Dining Table",
+      "imageUrl": "https://picsum.photos/seed/dwello5/600/400",
+      "imageHint": "oak table"
+    },
+    {
+      "id": "cat-furniture",
+      "description": "Furniture Category",
+      "imageUrl": "https://picsum.photos/seed/dwello6/400/300",
+      "imageHint": "luxury furniture"
+    },
+    {
+      "id": "cat-appliances",
+      "description": "Appliances Category",
+      "imageUrl": "https://picsum.photos/seed/dwello7/400/300",
+      "imageHint": "home appliances"
+    }
+  ]
+}

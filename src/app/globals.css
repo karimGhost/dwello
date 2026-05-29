@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 20% 97%; /* Warm Linen #FAF7F5 */
+    --foreground: 24 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 15%;
+    --primary: 24 50% 30%; /* Sophisticated Terracotta #734526 */
+    --primary-foreground: 20 20% 97%;
+    --secondary: 24 15% 90%;
+    --secondary-foreground: 24 50% 30%;
+    --muted: 24 10% 90%;
+    --muted-foreground: 24 10% 45%;
+    --accent: 353 60% 45%; /* Polished Redwood #B92E3F */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 24 10% 85%;
+    --input: 24 10% 85%;
+    --ring: 24 50% 30%;
+    --radius: 0.75rem;
+    --sidebar-background: 24 20% 98%;
+    --sidebar-foreground: 24 10% 15%;
+    --sidebar-primary: 24 50% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 24 15% 92%;
+    --sidebar-accent-foreground: 24 50% 30%;
+    --sidebar-border: 24 10% 90%;
+    --sidebar-ring: 24 50% 30%;
+  }
+
+  .dark {
+    --background: 24 10% 5%;
+    --foreground: 0 0% 98%;
+    --card: 24 10% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 24 10% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 24 40% 45%;
+    --primary-foreground: 24 10% 5%;
+    --secondary: 24 15% 15%;
+    --secondary-foreground: 24 40% 45%;
+    --muted: 24 15% 15%;
+    --muted-foreground: 24 10% 65%;
+    --accent: 353 60% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 24 10% 20%;
+    --input: 24 10% 20%;
+    --ring: 24 40% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
