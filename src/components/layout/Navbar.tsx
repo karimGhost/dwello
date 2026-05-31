@@ -64,9 +64,12 @@ async function handleLogout() {
         </div>
 
         <div className="flex items-center gap-2">
+                    <Link href="/wishlist">
+
           <Button variant="ghost" size="icon" className="hidden sm:flex">
             <Heart className="h-5 w-5" />
           </Button>
+          </Link>
 
           <Link href="/cart">
             <Button variant="ghost" size="icon" className="relative">

@@ -60,7 +60,28 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("newest");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+function addToWishlist(prod: Product) {
+  const item = {
+    id: prod.id,
+    name: prod.name,
+    price: Number(prod.salePrice || prod.price || 0),
+    image: prod.coverImage || prod.images?.[0] || "/placeholder.png",
+    brand: prod.brand || "",
+    category: prod.category || "",
+  };
 
+  const wishlist = JSON.parse(localStorage.getItem("dwello_wishlist") || "[]");
+
+  const exists = wishlist.find((x: any) => x.id === prod.id);
+
+  if (exists) {
+    alert("Already in wishlist");
+    return;
+  }
+
+  localStorage.setItem("dwello_wishlist", JSON.stringify([...wishlist, item]));
+  alert("Added to wishlist");
+}
   useEffect(() => {
     const q = query(
       collection(db, "products"),
@@ -255,13 +276,17 @@ export default function ProductsPage() {
                               <ShoppingCart className="h-4 w-4" />
                             </Button>
 
-                            <Button
-                              size="icon"
-                              variant="secondary"
-                              className="rounded-full shadow-lg"
-                            >
-                              <Heart className="h-4 w-4" />
-                            </Button>
+                          <Button
+  size="icon"
+  variant="secondary"
+  onClick={(e) => {
+    e.preventDefault();
+    addToWishlist(prod);
+  }}
+  className="rounded-full shadow-lg"
+>
+  <Heart className="h-4 w-4" />
+</Button>
                           </div>
                         </div>
                       </Link>

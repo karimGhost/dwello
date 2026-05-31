@@ -17,7 +17,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Navbar } from "@/components/layout/Navbar";
 import { Card, CardContent } from "@/components/ui/card";
-
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 type Product = {
   id: string;
   name: string;
@@ -32,6 +34,51 @@ type Product = {
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+const router = useRouter();
+
+async function handleSellClick() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    router.push("/auth");
+    return;
+  }
+
+  const confirmLogout = confirm(
+    "You are currently logged in. Logout first to continue to seller authentication?"
+  );
+
+  if (!confirmLogout) return;
+
+  try {
+    await signOut(auth);
+    router.push("/auth");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to logout.");
+  }
+}
+
+
+
+async function handleProfileClick() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    router.push("/auth");
+    return;
+  }
+
+  try {
+   
+    router.push("/account");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to logout.");
+  }
+}
+
+
 
   useEffect(() => {
     const q = query(
@@ -246,8 +293,20 @@ export default function Home() {
               <h4 className="font-headline font-bold mb-6">Quick Links</h4>
               <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><Link href="/products" className="hover:text-primary">Products</Link></li>
-                <li><Link href="/seller" className="hover:text-primary">Sell on Dwello</Link></li>
-                <li><Link href="/auth" className="hover:text-primary">My Account</Link></li>
+<li>
+  <button
+    onClick={handleSellClick}
+    className="hover:text-primary"
+  >
+    Sell on Dwello
+  </button>
+</li>                <li>
+   <button
+    onClick={handleProfileClick}
+    className="hover:text-primary"
+  >
+My Account  </button>
+  </li>
               </ul>
             </div>
 
@@ -255,7 +314,7 @@ export default function Home() {
               <h4 className="font-headline font-bold mb-6">Support</h4>
               <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><Link href="/orders" className="hover:text-primary">Order Tracking</Link></li>
-                <li><Link href="/contact" className="hover:text-primary">Contact Us</Link></li>
+                <li><Link href="/" className="hover:text-primary">Contact Us</Link></li>
               </ul>
             </div>
 

@@ -21,6 +21,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { any } from "zod";
 
 type Product = {
   id: string;
@@ -50,7 +51,28 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [loading, setLoading] = useState(true);
+function addToWishlist(prod: Product) {
+  const item = {
+    id: prod.id,
+    name: prod.name,
+    price: Number(prod.salePrice || prod.price || 0),
+    image: prod.coverImage || prod.images?.[0] || "/placeholder.png",
+    brand: prod.brand || "",
+    category: prod.category || "",
+  };
 
+  const wishlist = JSON.parse(localStorage.getItem("dwello_wishlist") || "[]");
+
+  const exists = wishlist.find((x: any) => x.id === prod.id);
+
+  if (exists) {
+    alert("Already in wishlist");
+    return;
+  }
+
+  localStorage.setItem("dwello_wishlist", JSON.stringify([...wishlist, item]));
+  alert("Added to wishlist");
+}
   useEffect(() => {
     if (!id) return;
 
@@ -109,6 +131,7 @@ export default function ProductDetailsPage() {
 
   alert("Added to cart");
 }
+
   const productImages = useMemo(() => {
     if (!product) return ["/placeholder.png"];
 
@@ -278,9 +301,17 @@ export default function ProductDetailsPage() {
   Add to Cart
 </Button>
 
-              <Button size="lg" variant="outline" className="h-14 w-14 p-0 rounded-none">
-                <Heart className="h-6 w-6 text-primary" />
-              </Button>
+                 <Button
+  size="icon"
+  variant="secondary"
+  onClick={(e) => {
+    e.preventDefault();
+    addToWishlist(product);
+  }}
+  className="rounded-full shadow-lg"
+>
+  <Heart className="h-4 w-4" />
+</Button>
 
               <Button
                 size="lg"
